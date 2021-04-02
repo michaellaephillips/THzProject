@@ -19,8 +19,21 @@ Unfortunately, the researchers were unable to collect concentration information,
 % transformed = (A<sub>i</sub> - A<sub>low</sub>)/(A<sub>high</sub> - A<sub>low</sub>)
 
 ## EDA: 
-Exploring the data, there are several peaks that one would expect to be able to use to model. Due to how the light hits and interacts with this sample there are several sine waves that are convoluted in the data. This make it difficult to see if there is actually more happening. By normalizing to the highest absorbance in the data, you can see that the peaks at 27.68, 64.45, and 94.35 cm<sup>-1</sup> have a “U” shape to them. This is most probably due to the underlying issues of the convoluted sine waves. Both 50.1 and 84.85 cm<sup>-1</sup> do not have these issues. I will be using the peak at 50.1 cm<sup>-1</sup> to build the model as the peak at 84.85 cm<sup>-1</sup> was used to develop the percent converted values.
-![alt text](https://github.com/michaellaephillips/THzProject/blob/master/startend.png?raw=true)
+Exploring the data, there are several peaks that one would expect to be able to use to model. Due to how the light interacts with this sample there are several sine waves that are convoluted in the data. This make it difficult to see if there is actually more happening. By normalizing to the highest absorbance fo each peak, it is easier to see that the peaks at 27.68, 64.45, and 94.35 cm<sup>-1</sup> have a “U” shape to them. This is most probably due to the underlying issues of the convoluted sine waves. Both 50.1 and 84.85 cm<sup>-1</sup> do not have these issues. I will be using the peak at 50.1 cm<sup>-1</sup> to build the model as the peak at 84.85 cm<sup>-1</sup> was used to develop the percent converted values.
+
+![alt text](https://github.com/michaellaephillips/THzProject/blob/master/normalizedAasfuncofFormB.png?raw=true)
 
 ## Supervised Learning: 
 After exploring the data, there was a clear linear dependence on one of the peaks. I chose to use a linear regression and model it at 50.1 cm<sup>-1</sup>. This will allow the researcher to model their data accordingly.
+
+![alt text](https://github.com/michaellaephillips/THzProject/blob/master/linearmodel.png?raw=true)
+
+The above shows the model with the raw data. It is clear that the model appears to fit the data well. To further investigate this, I compared the actual values of the absorbance with the predicted. The line trace shown in the below graph falls on top of the data, meaning that the predictions are similar. At the lower concentrations, there is a bit of scatter. This could be due to how we normalized, or the underlying sine function. 
+
+![alt text](https://github.com/michaellaephillips/THzProject/blob/master/ActualVsPrediction.png?raw=true)
+
+The next step was to evaluate the model. The Mean Absolute Percent Error was very low at 0.002, indicating that the model performs well for this purpose.
+
+## Future work: 
+In the future it would be nice to re run the experiment and evaluate the data. It would also be interesting to see if it is possible to remove the underlying sine wave. That would allow for the ability to work with more peaks and see if they produce the same results.
+
